@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose';
 
 export interface Iuser {
   email: string;
@@ -15,17 +15,12 @@ export interface CustomRequest {
 }
 
 export interface Inventory {
-  stock: {
-    name: string;
-    description: string;
-    size: string;
-    stockNumber: number;
-  };
+  name: string;
+  description: string;
+  size: string;
+  stockNumber: number;
+  stockPrice: number;
+  totalPrice: number;
 }
 
-export interface Icomment {
-    inventory:string;
-    user_id: string,
-    inventory_id:string,
-    comment:number;
-}
+
