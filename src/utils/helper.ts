@@ -25,5 +25,9 @@ class Helper {
     const isPassword = await bcrypt.compare(password, hashedPassword);
     return isPassword;
   }
+  static async totalPrice(stockNumber:number,stockPrice:number) {
+    const totalAmount = await stockPrice * stockNumber;
+    return totalAmount;
+  }
 }
 export default Helper;
