@@ -10,7 +10,7 @@ export async function signUp(req: Request, res: Response) {
     if (isUser) return errorResponse(res, 400, 'User already exists');
     const hash = await Helper.hashPassword(password);
     const user = await model.User.create({ username, email, password: hash });
-    return successResponse(res, 201, 'User created successfully', user);
+    return successResponse(res, 201, 'User created successfully');
   } catch (error) {
     handleError(req, error);
     return errorResponse(res, 500, 'Something Happened');
