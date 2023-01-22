@@ -1,5 +1,5 @@
-import { signUpValidation } from './user';
+import { signUpValidation,loginValidation } from './user';
 
-const validation = { signUpValidation };
+const validation = { signUpValidation,loginValidation };
 
 export default validation;
