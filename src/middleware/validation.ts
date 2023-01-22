@@ -22,3 +22,20 @@ export function signupValidationMiddleware(
     return errorResponse(res, 500, 'Something Happened');
   }
 }
+
+export function loginValidationMiddleware(
+  req: Request,
+  res: Response,
+  next: NextFunction
+) {
+  const payload = req.body;
+  try {
+    const validate = validation.loginValidation(payload);
+    if (validate.error)
+      return validationErrors(res, 406, validate.error.details[0].message);
+    next();
+  } catch (error) {
+    handleError(req, error);
+    return errorResponse(res, 500, 'Something Happened');
+  }
+}
