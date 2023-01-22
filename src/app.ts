@@ -25,6 +25,7 @@ app.get('/',(req,res) => {
 })
 
 app.use('/api/v1/users', route.userRouter);
+app.use('/api/v1/inventory',route.inventoryRouter);
 
 export default app
 
