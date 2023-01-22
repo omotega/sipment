@@ -8,6 +8,8 @@ const userSchema = new mongoose.Schema({
   googleId: { type: String },
   githubId: { type: String },
   facebookId: { type: String },
+},{
+  timestamps:true,
 });
 
 
