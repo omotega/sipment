@@ -9,3 +9,11 @@ export function signUpValidation(user: Iuser) {
   });
   return scheme.validate(user);
 }
+
+export function loginValidation(login:{email:string,password:string}) {
+  const scheme = joi.object({
+    email: joi.string().email().required(),
+    password:joi.string().min(6).max(25).required(),
+  })
+  return scheme.validate(login);
+}
