@@ -23,4 +23,10 @@ export interface Inventory {
   totalPrice: number;
 }
 
+export interface Icomment {
+  inventory: string;
+  user_id: string;
+  inventory_id: string;
+  comment: number;
+}
 
