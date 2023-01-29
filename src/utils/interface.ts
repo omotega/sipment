@@ -1,13 +1,14 @@
 import mongoose from 'mongoose';
 
 export interface Iuser {
+  _id?: string;
   email: string;
   username: string;
   password: string;
 }
 
 export interface CustomRequest {
-  user: Iuser;
+  User: Iuser;
   file: object;
   params: object;
   query: object;
@@ -24,9 +25,14 @@ export interface Inventory {
 }
 
 export interface Icomment {
+  text: string
   inventory: string;
   user_id: string;
   inventory_id: string;
   comment: number;
 }
 
+export interface Iwarehouse {
+  location: string;
+  inventory: [Inventory];
+}

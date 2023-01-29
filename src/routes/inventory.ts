@@ -2,10 +2,14 @@ import { Router } from 'express'
 
 const inventoryRouter = Router();
 
-import { createInventory,editInventory } from '../controllers/inventory'
+import { createInventory,editInventory,deleteInventory,allInventory } from '../controllers/inventory'
+import { authGuard } from '../middleware/auth';
 
-inventoryRouter.route('/edit/:id').put(editInventory);
-inventoryRouter.route('/create').post(createInventory);
+
+inventoryRouter.route('/edit/:inventoryId').put(authGuard,editInventory);
+inventoryRouter.route('/').get(allInventory);
+inventoryRouter.route('/create').post(authGuard,createInventory);
+inventoryRouter.route('/inventoryId').delete(authGuard,deleteInventory);
 
 
 export default inventoryRouter;

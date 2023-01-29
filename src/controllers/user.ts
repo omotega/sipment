@@ -25,10 +25,10 @@ export async function login(req: Request, res: Response) {
     const isPassword = await Helper.comparePassword(password, user.password);
     if (!isPassword) return errorResponse(res, 400, 'incorrect password');
     const token = await Helper.generateToken({
-      id: user.id,
+      _id: user.id,
       username: user.username,
     });
-    return successResponse(res, 200, 'User logged in');
+    return successResponse(res, 200, 'User logged in',token);
   } catch (error) {
     handleError(req, error);
     return errorResponse(res, 500, 'Something Happened');

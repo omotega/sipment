@@ -26,6 +26,7 @@ app.get('/',(req,res) => {
 
 app.use('/api/v1/users', route.userRouter);
 app.use('/api/v1/inventory',route.inventoryRouter);
+app.use('/api/v1/comments',route.commentRouter);
 
 export default app
 
