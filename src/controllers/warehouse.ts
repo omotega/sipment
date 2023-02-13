@@ -14,3 +14,15 @@ export async function createWarehouse(req: Request, res: Response) {
 }
 
 
+export async function assignInventory(req: Request, res: Response) {
+  try {
+    const { inventoryId } = req.params;
+    const assign = await model.Inventory.updateOne({
+      $push: { inventories: inventoryId },
+    });
+    return successResponse(res, 200, 'Inventory assigned successfully',assign);
+  } catch (error) {
+    handleError(req, error);
+    return errorResponse(res, 500, 'Something Happened');
+  }
+}
