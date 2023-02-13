@@ -15,9 +15,10 @@ export async function authGuard(
       const user = await model.User.findById(decoded._id);
       if (!user) return errorResponse(res, 404, 'User not found');
       req.User = decoded;
+      console.log(req.User);
       return next();
     } else {
-      errorResponse(res, 401, 'incorrect validation');
+      errorResponse(res, 403, 'incorrect validation');
     }
   } catch (error: any) {
     handleError(req, error);
