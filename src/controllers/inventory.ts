@@ -77,8 +77,25 @@ export async function deleteInventory(req: Request, res: Response) {
 
 export async function allInventory(req: Request, res: Response) {
   try {
-    const inventory = await model.Inventory.findOne()
+    const inventory = await model.Inventory.find();
     return successResponse(res, 200, 'inventory gotten', inventory);
+  } catch (error) {
+    handleError(req, error);
+    return errorResponse(res, 500, 'Something Happened');
+  }
+}
+
+export async function getInventoryById(req: Request, res: Response) {
+  try {
+    const { inventoryId } = req.params;
+    const inventory = await model.Inventory.findById(inventoryId);
+    if (!inventory) return errorResponse(res, 404, 'inventory not found');
+    return successResponse(
+      res,
+      200,
+      'inventory fetched successfully',
+      inventory
+    );
   } catch (error) {
     handleError(req, error);
     return errorResponse(res, 500, 'Something Happened');
