@@ -65,9 +65,9 @@ export async function deleteInventory(req: Request, res: Response) {
     const inventory = await model.Inventory.findById(inventoryId);
     if (!inventory) return errorResponse(res, 404, 'inventory not found');
     await model.Inventory.findByIdAndDelete(inventoryId);
-    // await model.Comment.find({ id: inventoryId }).findByIdAndDelete(
-    //   inventoryId
-    // );
+    await model.Comment.find({ id: inventoryId }).findByIdAndDelete(
+      inventoryId
+    );
     return successResponse(res, 200, 'Inventory deleted successfully');
   } catch (error) {
     handleError(req, error);
