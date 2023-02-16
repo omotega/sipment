@@ -10,7 +10,10 @@ export async function signUp(req: Request, res: Response) {
     if (isUser) return errorResponse(res, 400, 'User already exists');
     const hash = await Helper.hashPassword(password);
     const user = await model.User.create({ username, email, password: hash });
-    return successResponse(res, 201, 'User created successfully');
+    return successResponse(res, 201, 'User created successfully', {
+      id: user.id,
+      username: user.username,
+    });
   } catch (error) {
     handleError(req, error);
     return errorResponse(res, 500, 'Something Happened');
@@ -28,7 +31,7 @@ export async function login(req: Request, res: Response) {
       _id: user.id,
       username: user.username,
     });
-    return successResponse(res, 200, 'User logged in',token);
+    return successResponse(res, 200, 'User logged in', token);
   } catch (error) {
     handleError(req, error);
     return errorResponse(res, 500, 'Something Happened');
